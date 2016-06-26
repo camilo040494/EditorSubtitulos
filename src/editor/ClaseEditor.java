@@ -64,20 +64,16 @@ public abstract class ClaseEditor {
 			String linea;
 			// http://chuwiki.chuidiang.org/index.php?title=Lectura_y_Escritura_de_Ficheros_en_Java
 			pw.println("");
-			ArrayList<String> subs = new ArrayList<String>();
+			String input = "";
 			while ((linea = lector.readLine()) != null) {
 				linea = linea.trim();
 				StringBuilder write = new StringBuilder();
-
+				
+				
 				for (int i = 0; i < linea.length(); i++) {
 					write.append(reemplazarChar(linea.charAt(i)));
 				}
 
-				subs.add(write.toString());
-			}
-
-			for (String string : subs) {
-				pw.println(string.toString());
 			}
 
 			archivo.close();
