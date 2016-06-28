@@ -37,6 +37,19 @@ public abstract class ClaseEditor {
 
 	protected String errorMessage = "Archivo no válido";
 
-	public abstract void limpiarSubtitulos();
+	public void limpiarSubtitulos(){
+		if (nombreArchivo == null) {
+			JOptionPane.showMessageDialog(null, "Debe elegir un archivo");
+			return;
+		} else if (nombreArchivo.equals(errorMessage)) {
+			JOptionPane.showMessageDialog(null,
+					"Extensión de archivo no válido");
+			return;
+		}
+		limpiar();
+		System.out.println("TERMINO");
+	}
+
+	protected abstract void limpiar();
 	
 }

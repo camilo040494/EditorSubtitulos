@@ -35,7 +35,7 @@ public class InterfazPrincipal extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
-		editor = new SubEditorAddingEdition();
+//		editor = new SubEditorAddingEdition();
 		editor = new SubEditor();
 		newPanel = new PanelDatos(this);
 		add(newPanel, BorderLayout.CENTER);
@@ -60,15 +60,7 @@ public class InterfazPrincipal extends JFrame {
 class SubEditorAddingEdition extends ClaseEditor{
 	
 	@Override
-	public void limpiarSubtitulos(){
-			if (nombreArchivo == null) {
-				JOptionPane.showMessageDialog(null, "Debe elegir un archivo");
-				return;
-			} else if (nombreArchivo.equals(errorMessage)) {
-				JOptionPane.showMessageDialog(null,
-						"Extensi�n de archivo no v�lido");
-				return;
-			}
+	protected void limpiar(){
 			FileWriter fichero = null;
 			FileInputStream archivo = null;
 			try {
@@ -123,7 +115,6 @@ class SubEditorAddingEdition extends ClaseEditor{
 					}
 				}
 			}
-			System.out.println("TERMINO");
 		}
 
 	private String reemplazarChar(char charAt) {
@@ -186,15 +177,7 @@ class SubEditor extends ClaseEditor{
 	}
 	
 	@Override
-	public void limpiarSubtitulos() {
-		if (nombreArchivo == null) {
-			JOptionPane.showMessageDialog(null, "Debe elegir un archivo");
-			return;
-		} else if (nombreArchivo.equals(errorMessage)) {
-			JOptionPane.showMessageDialog(null,
-					"Extensi�n de archivo no v�lido");
-			return;
-		}
+	protected void limpiar(){
 		FileWriter fichero = null;
 		FileInputStream archivo = null;
 		try {
@@ -241,6 +224,5 @@ class SubEditor extends ClaseEditor{
 				}
 			}
 		}
-		System.out.println("TERMINO");
 	}
 }
