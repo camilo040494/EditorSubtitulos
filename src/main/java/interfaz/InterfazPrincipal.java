@@ -118,36 +118,36 @@ class SubEditorAddingEdition extends ClaseEditor{
 
 	private String reemplazarChar(char charAt) {
 		switch (charAt) {
-		case 'Ã¡':
+		case 'á':
 			return "a";
-		case 'Ã©':
+		case 'é':
 			return "e";
-		case 'Ã­':
+		case 'í':
 			return "i";
-		case 'Ã³':
+		case 'ó':
 			return "o";
-		case 'Ãº':
+		case 'ú':
 			return "u";
-		case 'Ã':
+		case 'Á':
 			return "A";
-		case 'Ã‰':
+		case 'É':
 			return "E";
-		case 'Ã':
+		case 'Í':
 			return "I";
-		case 'Ã“':
+		case 'Ó':
 			return "O";
-		case 'Ãš':
+		case 'Ú':
 			return "U";
-		case 'Ã±':
+		case 'ñ':
 			return "ni";
-		case 'Ã‘':
+		case 'Ñ':
 			return "Ni";
-		case 'Â¿':
+		case '¿':
 			return "";
-		case 'Â¡':
+		case '¡':
 			return "";
 		default:
-			return charAt + "";
+			return charAt+"";
 		}
 	}
 
@@ -158,20 +158,20 @@ class SubEditor extends ClaseEditor{
 
 	private static HashMap<String, String> inicializarMap() {
 		HashMap<String, String> temp = new HashMap<String, String>();
-		temp.put("Ã¡", "a");
-		temp.put("Ã©", "e");
-		temp.put("Ã­", "i");
-		temp.put("Ã³", "o");
-		temp.put("Ãº", "u");
-		temp.put("Ã", "A");
-		temp.put("Ã‰", "E");
-		temp.put("Ã", "I");
-		temp.put("Ã“", "O");
-		temp.put("Ãš", "U");
-		temp.put("Ã±", "ni");
-		temp.put("Ã‘", "Ni");
-		temp.put("Â¿", "");
-		temp.put("Â¡", "");
+		temp.put("á", "a");
+		temp.put("é", "e");
+		temp.put("í", "i");
+		temp.put("ó", "o");
+		temp.put("ú", "u");
+		temp.put("Á", "A");
+		temp.put("É", "E");
+		temp.put("Í", "I");
+		temp.put("Ó", "O");
+		temp.put("Ú", "U");
+		temp.put("ñ", "ni");
+		temp.put("Ñ", "Ni");
+		temp.put("¿", "");
+		temp.put("¡", "");
 		return temp;
 	}
 	
