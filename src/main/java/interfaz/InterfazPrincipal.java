@@ -8,7 +8,9 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -117,34 +119,35 @@ class SubEditorAddingEdition extends ClaseEditor{
 		}
 
 	private String reemplazarChar(char charAt) {
+		
 		switch (charAt) {
-		case '·':
+		case '√°':
 			return "a";
-		case 'È':
+		case '√©':
 			return "e";
-		case 'Ì':
+		case '√≠':
 			return "i";
-		case 'Û':
+		case '√≥':
 			return "o";
-		case '˙':
+		case '√∫':
 			return "u";
-		case '¡':
+		case '√Å':
 			return "A";
-		case '…':
+		case '√â':
 			return "E";
-		case 'Õ':
+		case '√ç':
 			return "I";
-		case '”':
+		case '√ì':
 			return "O";
-		case '⁄':
+		case '√ö':
 			return "U";
-		case 'Ò':
+		case '√±':
 			return "ni";
-		case '—':
+		case '√ë':
 			return "Ni";
-		case 'ø':
+		case '¬ø':
 			return "";
-		case '°':
+		case '¬°':
 			return "";
 		default:
 			return charAt+"";
@@ -158,32 +161,31 @@ class SubEditor extends ClaseEditor{
 
 	private static HashMap<String, String> inicializarMap() {
 		HashMap<String, String> temp = new HashMap<String, String>();
-		temp.put("·", "a");
-		temp.put("È", "e");
-		temp.put("Ì", "i");
-		temp.put("Û", "o");
-		temp.put("˙", "u");
-		temp.put("¡", "A");
-		temp.put("…", "E");
-		temp.put("Õ", "I");
-		temp.put("”", "O");
-		temp.put("⁄", "U");
-		temp.put("Ò", "ni");
-		temp.put("—", "Ni");
-		temp.put("ø", "");
-		temp.put("°", "");
+		temp.put("√°", "a");
+		temp.put("√©", "e");
+		temp.put("√≠", "i");
+		temp.put("√≥", "o");
+		temp.put("√∫", "u");
+		temp.put("√Å", "A");
+		temp.put("√â", "E");
+		temp.put("√ç", "I");
+		temp.put("√ì", "O");
+		temp.put("√ö", "U");
+		temp.put("√±", "ni");
+		temp.put("√ë", "Ni");
+		temp.put("¬ø", "");
+		temp.put("¬°", "");
 		return temp;
 	}
 	
 	@Override
 	protected void limpiar(){
-		FileWriter fichero = null;
 		FileInputStream archivo = null;
 		try {
 			File ruta = new File(nombreArchivo);
 			archivo = new FileInputStream(ruta);
 			System.out.println(ruta);
-			InputStreamReader conexion = new InputStreamReader(archivo);
+			InputStreamReader conexion = new InputStreamReader(archivo,"ISO-8859-1");
 			BufferedReader lector = new BufferedReader(conexion);
 
 			String linea;
@@ -199,10 +201,13 @@ class SubEditor extends ClaseEditor{
 			archivo.close();
 
 			System.out.println(input);
-
-			FileOutputStream os = new FileOutputStream(ruta);
-			os.write(input.getBytes());
-			os.close();
+			
+			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(ruta),"ISO-8859-1");
+			writer.write(input);
+			writer.close();
+//			FileOutputStream os = new FileOutputStream(ruta);
+//			os.write(input.getBytes());
+//			os.close();
 
 		} catch (java.io.IOException e) {
 			System.out.println("Ocurrio el siguiente error:");
@@ -211,13 +216,6 @@ class SubEditor extends ClaseEditor{
 			if (archivo != null) {
 				try {
 					archivo.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-			if (fichero != null) {
-				try {
-					fichero.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
