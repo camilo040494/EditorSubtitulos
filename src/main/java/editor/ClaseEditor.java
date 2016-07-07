@@ -16,10 +16,10 @@ public abstract class ClaseEditor {
 
 	public String darRuta() {
 		JFileChooser fc = new JFileChooser();
-		fc.showOpenDialog(null);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				"SRT FILES", "srt");
 		fc.setFileFilter(filter);
+		fc.showOpenDialog(null);
 		File temp2 = fc.getSelectedFile();
 		if (temp2 == null) {
 			return errorMessage;
