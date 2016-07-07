@@ -13,6 +13,8 @@ import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 
@@ -25,7 +27,6 @@ public class InterfazPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// private SubEditorAddingEdition editor;
 	private ClaseEditor editor;
 	private PanelDatos newPanel;
 
@@ -37,7 +38,8 @@ public class InterfazPrincipal extends JFrame {
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 //		editor = new SubEditorAddingEdition();
-		editor = new SubEditor();
+//		editor = new SubEditor();
+		editor = new SubEditorJavaRegrex();
 		newPanel = new PanelDatos(this);
 		add(newPanel, BorderLayout.CENTER);
 	}
@@ -205,9 +207,77 @@ class SubEditor extends ClaseEditor{
 			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(ruta),"ISO-8859-1");
 			writer.write(input);
 			writer.close();
-//			FileOutputStream os = new FileOutputStream(ruta);
-//			os.write(input.getBytes());
-//			os.close();
+
+		} catch (java.io.IOException e) {
+			System.out.println("Ocurrio el siguiente error:");
+			e.printStackTrace();
+		} finally {
+			if (archivo != null) {
+				try {
+					archivo.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}class SubEditorJavaRegrex extends ClaseEditor{
+	
+	private static HashMap<Pattern, String> map = inicializarMap();
+
+	private static HashMap<Pattern, String> inicializarMap() {
+		HashMap<Pattern, String> temp = new HashMap<Pattern, String>();
+		temp.put(Pattern.compile("(.)á(.)"), "$1a$2");
+		temp.put(Pattern.compile("(.)é(.)"), "$1e$2");
+		temp.put(Pattern.compile("(.)í(.)"), "$1i$2");
+		temp.put(Pattern.compile("(.)ó(.)"), "$1o$2");
+		temp.put(Pattern.compile("(.)ú(.)"), "$1u$2");
+		temp.put(Pattern.compile("(.)Á(.)"), "$1A$2");
+		temp.put(Pattern.compile("(.)É(.)"), "$1E$2");
+		temp.put(Pattern.compile("(.)Í(.)"), "$1I$2");
+		temp.put(Pattern.compile("(.)Ó(.)"), "$1O$2");
+		temp.put(Pattern.compile("(.)Ú(.)"), "$1U$2");
+		temp.put(Pattern.compile("(.)ñ(.)"), "$1ni$2");
+		temp.put(Pattern.compile("(.)Ñ(.)"), "$1Ni$2");
+		temp.put(Pattern.compile("(.)¿(.)"), "$1$2");
+		temp.put(Pattern.compile("(.)¡(.)"), "$1$2");
+		return temp;
+	}
+	
+	private String regrexFunction(String input) {
+		String retorno = input;
+		for (Pattern jRegrex : map.keySet()) {
+			Matcher matcher = jRegrex.matcher(retorno);
+			retorno = matcher.replaceAll(map.get(jRegrex));
+		}
+		return retorno;
+	}
+	
+	@Override
+	protected void limpiar(){
+		FileInputStream archivo = null;
+		try {
+			File ruta = new File(nombreArchivo);
+			archivo = new FileInputStream(ruta);
+			System.out.println(ruta);
+			InputStreamReader conexion = new InputStreamReader(archivo,"ISO-8859-1");
+			BufferedReader lector = new BufferedReader(conexion);
+
+			String linea;
+			// http://chuwiki.chuidiang.org/index.php?title=Lectura_y_Escritura_de_Ficheros_en_Java
+			String input = "";
+			while ((linea = lector.readLine()) != null)
+				input += linea.trim() + System.lineSeparator();
+			
+			input = regrexFunction(input);
+
+			archivo.close();
+
+			System.out.println(input);
+			
+			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(ruta),"ISO-8859-1");
+			writer.write(input);
+			writer.close();
 
 		} catch (java.io.IOException e) {
 			System.out.println("Ocurrio el siguiente error:");
