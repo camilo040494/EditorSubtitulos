@@ -227,20 +227,20 @@ class SubEditor extends ClaseEditor{
 
 	private static HashMap<Pattern, String> inicializarMap() {
 		HashMap<Pattern, String> temp = new HashMap<Pattern, String>();
-		temp.put(Pattern.compile("(.)á(.)"), "$1a$2");
-		temp.put(Pattern.compile("(.)é(.)"), "$1e$2");
-		temp.put(Pattern.compile("(.)í(.)"), "$1i$2");
-		temp.put(Pattern.compile("(.)ó(.)"), "$1o$2");
-		temp.put(Pattern.compile("(.)ú(.)"), "$1u$2");
-		temp.put(Pattern.compile("(.)Á(.)"), "$1A$2");
-		temp.put(Pattern.compile("(.)É(.)"), "$1E$2");
-		temp.put(Pattern.compile("(.)Í(.)"), "$1I$2");
-		temp.put(Pattern.compile("(.)Ó(.)"), "$1O$2");
-		temp.put(Pattern.compile("(.)Ú(.)"), "$1U$2");
-		temp.put(Pattern.compile("(.)ñ(.)"), "$1ni$2");
-		temp.put(Pattern.compile("(.)Ñ(.)"), "$1Ni$2");
-		temp.put(Pattern.compile("(.)¿(.)"), "$1$2");
-		temp.put(Pattern.compile("(.)¡(.)"), "$1$2");
+		temp.put(Pattern.compile("(.*)á(.*)"), "$1a$2");
+		temp.put(Pattern.compile("(.*)é(.*)"), "$1e$2");
+		temp.put(Pattern.compile("(.*)í(.*)"), "$1i$2");
+		temp.put(Pattern.compile("(.*)ó(.*)"), "$1o$2");
+		temp.put(Pattern.compile("(.*)ú(.*)"), "$1u$2");
+		temp.put(Pattern.compile("(.*)Á(.*)"), "$1A$2");
+		temp.put(Pattern.compile("(.*)É(.*)"), "$1E$2");
+		temp.put(Pattern.compile("(.*)Í(.*)"), "$1I$2");
+		temp.put(Pattern.compile("(.*)Ó(.*)"), "$1O$2");
+		temp.put(Pattern.compile("(.*)Ú(.*)"), "$1U$2");
+		temp.put(Pattern.compile("(.*)ñ(.*)"), "$1ni$2");
+		temp.put(Pattern.compile("(.*)Ñ(.*)"), "$1Ni$2");
+		temp.put(Pattern.compile("(.*)¿(.*)"), "$1$2");
+		temp.put(Pattern.compile("(.*)¡(.*)"), "$1$2");
 		return temp;
 	}
 	
