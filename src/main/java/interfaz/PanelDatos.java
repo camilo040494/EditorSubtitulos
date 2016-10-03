@@ -55,10 +55,9 @@ public class PanelDatos extends JPanel implements ActionListener {
 		txtRutaArchivo.setEditable(false);
 		
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		String evento = arg0.getActionCommand();
+	
+	public void actionPerformed(ActionEvent e) {
+		String evento = e.getActionCommand();
 		if (evento.equals(ARCHIVO)) {
 			String ruta = interfaz.elegirArchivo();
 			txtRutaArchivo.setText(ruta);

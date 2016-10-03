@@ -38,8 +38,8 @@ public class InterfazPrincipal extends JFrame {
 		setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 //		editor = new SubEditorAddingEdition();
-//		editor = new SubEditor();
-		editor = new SubEditorJavaRegrex();
+		editor = new SubEditor();
+//		editor = new SubEditorJavaRegrex();
 		newPanel = new PanelDatos(this);
 		add(newPanel, BorderLayout.CENTER);
 	}
@@ -123,33 +123,33 @@ class SubEditorAddingEdition extends ClaseEditor{
 	private String reemplazarChar(char charAt) {
 		
 		switch (charAt) {
-		case '√°':
+		case '·':
 			return "a";
-		case '√©':
+		case 'È':
 			return "e";
-		case '√≠':
+		case 'Ì':
 			return "i";
-		case '√≥':
+		case 'Û':
 			return "o";
-		case '√∫':
+		case '˙':
 			return "u";
-		case '√Å':
+		case '¡':
 			return "A";
-		case '√â':
+		case '…':
 			return "E";
-		case '√ç':
+		case 'Õ':
 			return "I";
-		case '√ì':
+		case '”':
 			return "O";
-		case '√ö':
+		case '⁄':
 			return "U";
-		case '√±':
+		case 'Ò':
 			return "ni";
-		case '√ë':
+		case '—':
 			return "Ni";
-		case '¬ø':
+		case 'ø':
 			return "";
-		case '¬°':
+		case '°':
 			return "";
 		default:
 			return charAt+"";
@@ -163,20 +163,20 @@ class SubEditor extends ClaseEditor{
 
 	private static HashMap<String, String> inicializarMap() {
 		HashMap<String, String> temp = new HashMap<String, String>();
-		temp.put("√°", "a");
-		temp.put("√©", "e");
-		temp.put("√≠", "i");
-		temp.put("√≥", "o");
-		temp.put("√∫", "u");
-		temp.put("√Å", "A");
-		temp.put("√â", "E");
-		temp.put("√ç", "I");
-		temp.put("√ì", "O");
-		temp.put("√ö", "U");
-		temp.put("√±", "ni");
-		temp.put("√ë", "Ni");
-		temp.put("¬ø", "");
-		temp.put("¬°", "");
+		temp.put("·", "a");
+		temp.put("È", "e");
+		temp.put("Ì", "i");
+		temp.put("Û", "o");
+		temp.put("˙", "u");
+		temp.put("¡", "A");
+		temp.put("…", "E");
+		temp.put("Õ", "I");
+		temp.put("”", "O");
+		temp.put("⁄", "U");
+		temp.put("Ò", "ni");
+		temp.put("—", "Ni");
+		temp.put("ø", "");
+		temp.put("°", "");
 		return temp;
 	}
 	
@@ -202,7 +202,6 @@ class SubEditor extends ClaseEditor{
 
 			archivo.close();
 
-			System.out.println(input);
 			
 			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(ruta),"ISO-8859-1");
 			writer.write(input);
@@ -227,20 +226,20 @@ class SubEditor extends ClaseEditor{
 
 	private static HashMap<Pattern, String> inicializarMap() {
 		HashMap<Pattern, String> temp = new HashMap<Pattern, String>();
-		temp.put(Pattern.compile("(.)√°(.)"), "$1a$2");
-		temp.put(Pattern.compile("(.)√©(.)"), "$1e$2");
-		temp.put(Pattern.compile("(.)√≠(.)"), "$1i$2");
-		temp.put(Pattern.compile("(.)√≥(.)"), "$1o$2");
-		temp.put(Pattern.compile("(.)√∫(.)"), "$1u$2");
-		temp.put(Pattern.compile("(.)√Å(.)"), "$1A$2");
-		temp.put(Pattern.compile("(.)√â(.)"), "$1E$2");
-		temp.put(Pattern.compile("(.)√ç(.)"), "$1I$2");
-		temp.put(Pattern.compile("(.)√ì(.)"), "$1O$2");
-		temp.put(Pattern.compile("(.)√ö(.)"), "$1U$2");
-		temp.put(Pattern.compile("(.)√±(.)"), "$1ni$2");
-		temp.put(Pattern.compile("(.)√ë(.)"), "$1Ni$2");
-		temp.put(Pattern.compile("(.)¬ø(.)"), "$1$2");
-		temp.put(Pattern.compile("(.)¬°(.)"), "$1$2");
+		temp.put(Pattern.compile("(.*)·(.*)", Pattern.DOTALL), "$1a$2");
+		temp.put(Pattern.compile("(.*)È(.*)", Pattern.DOTALL), "$1e$2");
+		temp.put(Pattern.compile("(.*)Ì(.*)", Pattern.DOTALL), "$1i$2");
+		temp.put(Pattern.compile("(.*)Û(.*)", Pattern.DOTALL), "$1o$2");
+		temp.put(Pattern.compile("(.*)˙(.*)", Pattern.DOTALL), "$1u$2");
+		temp.put(Pattern.compile("(.*)¡(.*)", Pattern.DOTALL), "$1A$2");
+		temp.put(Pattern.compile("(.*)…(.*)", Pattern.DOTALL), "$1E$2");
+		temp.put(Pattern.compile("(.*)Õ(.*)", Pattern.DOTALL), "$1I$2");
+		temp.put(Pattern.compile("(.*)”(.*)", Pattern.DOTALL), "$1O$2");
+		temp.put(Pattern.compile("(.*)⁄(.*)", Pattern.DOTALL), "$1U$2");
+		temp.put(Pattern.compile("(.*)Ò(.*)", Pattern.DOTALL), "$1ni$2");
+		temp.put(Pattern.compile("(.*)—(.*)", Pattern.DOTALL), "$1Ni$2");
+		temp.put(Pattern.compile("(.*)ø(.*)", Pattern.DOTALL), "$1$2");
+		temp.put(Pattern.compile("(.*)°(.*)", Pattern.DOTALL), "$1$2");
 		return temp;
 	}
 	
@@ -273,7 +272,7 @@ class SubEditor extends ClaseEditor{
 
 			archivo.close();
 
-			System.out.println(input);
+//			System.out.println(input);
 			
 			OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(ruta),"ISO-8859-1");
 			writer.write(input);

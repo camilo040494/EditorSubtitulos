@@ -40,7 +40,6 @@ public abstract class ClaseEditor {
 			return;
 		}
 		limpiar();
-		System.out.println("TERMINO");
 	}
 
 	protected abstract void limpiar();
